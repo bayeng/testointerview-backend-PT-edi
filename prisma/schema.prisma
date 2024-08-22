@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  password    String
+  isAdmin     Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  accessToken accessToken[]
+  biodata     Biodata[]
+}
+
+model accessToken {
+  id        String   @id @default(uuid())
+  token     String   @db.Text
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+}
+
+model PendidikanTerakhir {
+  id                String    @id @default(uuid())
+  jenjangPendidikan String    @db.VarChar(100)
+  namaInstitusi     String    @db.VarChar(100)
+  jurusan           String    @db.VarChar(50)
+  lulus             String    @db.VarChar(50)
+  ipk               Float
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  biodata           Biodata[]
+}
+
+model RiwayatPelatihan {
+  id            String    @id @default(uuid())
+  namaPelatihan String    @db.VarChar(255)
+  isSertifikat  Boolean
+  tahun         String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  biodata       Biodata[]
+}
+
+model RiwayatPekerjaan {
+  id                 String    @id @default(uuid())
+  namaPerusahaan     String    @db.VarChar(255)
+  posisiTerakhir     String    @db.VarChar(255)
+  pendapatanTerakhir Float
+  tahun              String
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  biodata            Biodata[]
+}
+
+model Biodata {
+  id                   String              @id @default(uuid())
+  nama                 String              @db.VarChar(100)
+  posisiLamaran        String              @db.VarChar(100)
+  noKtp                String              @unique
+  lahir                String              @db.VarChar(100)
+  isCewek              Boolean
+  agama                String              @db.VarChar(50)
+  golDarah             String              @db.VarChar(10)
+  statusPerkawinan     String              @db.VarChar(50)
+  alamatKtp            String              @db.VarChar(255)
+  alamat               String              @db.VarChar(255)
+  email                String              @db.VarChar(100)
+  noHp                 String              @db.VarChar(20)
+  orangDarurat         String              @db.VarChar(100)
+  skill                String              @db.Text
+  isBersediaLuarKota   Boolean
+  harapanPenghasilan   Float
+  userId               String
+  user                 User                @relation(fields: [userId], references: [id])
+  pendidikanTerakhir   PendidikanTerakhir? @relation(fields: [pendidikanTerakhirId], references: [id], onDelete: Cascade)
+  pendidikanTerakhirId String?
+  riwayatPelatihan     RiwayatPelatihan?   @relation(fields: [riwayatPelatihanId], references: [id], onDelete: Cascade)
+  riwayatPelatihanId   String?
+  riwayatPekerjaan     RiwayatPekerjaan?   @relation(fields: [riwayatPekerjaanId], references: [id], onDelete: Cascade)
+  riwayatPekerjaanId   String?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+}
