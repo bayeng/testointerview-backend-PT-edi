@@ -7,84 +7,102 @@ import {
   IsNumber,
   IsString,
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateBiodatumDto extends PartialType(CreateBiodatumDto) {
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   nama: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   noKtp: string;
 
-  @IsNotEmpty()
-  @IsString()
-  alamat: string;
-
-  @IsNotEmpty()
-  @IsString()
-  lahir: string;
-
-  @IsBoolean()
-  isCewek: boolean;
-
-  @IsNotEmpty()
-  @IsString()
-  agama: string;
-
-  @IsNotEmpty()
-  @IsString()
-  golDarah: string;
-
-  @IsNotEmpty()
-  @IsString()
-  statusPerkawinan: string;
-
-  @IsNotEmpty()
-  @IsString()
-  alamatKtp: string;
-
-  @IsNotEmpty()
-  @IsEmail()
-  email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  noHp: string;
-
-  @IsNotEmpty()
-  @IsString()
-  orangDarurat: string;
-
-  @IsNotEmpty()
-  @IsString()
-  skill: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isBersediaLuarKota: boolean;
-
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   posisiLamaran: string;
 
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  alamat: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  lahir: string;
+
+  @ApiProperty()
+  @IsBoolean()
+  isCewek: boolean;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  agama: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  golDarah: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  statusPerkawinan: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  alamatKtp: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  noHp: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  orangDarurat: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  skill: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsBoolean()
+  isBersediaLuarKota: boolean;
+
+  @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
   harapanPenghasilan: number;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   userId: string;
 
-  @IsNotEmpty()
+  @ApiProperty()
   @IsString()
   pendidikanTerakhirId: string;
 
-  @IsNotEmpty()
+  @ApiProperty()
   @IsString()
   riwayatPelatihanId: string;
 
-  @IsNotEmpty()
+  @ApiProperty()
   @IsString()
   riwayatPekerjaanId: string;
 }

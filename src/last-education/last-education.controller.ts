@@ -8,12 +8,18 @@ import {
   Delete,
   Version,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { LastEducationService } from './last-education.service';
 import { CreateLastEducationDto } from './dto/create-last-education.dto';
 import { UpdateLastEducationDto } from './dto/update-last-education.dto';
 import { Response } from '../helper/response';
+import { AuthGuard } from '@nestjs/passport';
+import { RbacGuard } from '../auth/guard/rbac.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@UseGuards(RbacGuard)
+@ApiTags('Last Education')
 @Controller('last-education')
 export class LastEducationController {
   constructor(private readonly lastEducationService: LastEducationService) {}

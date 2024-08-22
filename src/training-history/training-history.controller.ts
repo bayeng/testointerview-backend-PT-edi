@@ -14,7 +14,9 @@ import { CreateTrainingHistoryDto } from './dto/create-training-history.dto';
 import { UpdateTrainingHistoryDto } from './dto/update-training-history.dto';
 import { Response } from '../helper/response';
 import { TrainingHistory } from './entities/training-history.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Training History')
 @Controller('training-history')
 export class TrainingHistoryController {
   constructor(

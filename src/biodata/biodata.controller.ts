@@ -19,7 +19,10 @@ import { AuthService } from '../auth/auth.service';
 import { RbacGuard } from '../auth/guard/rbac.guard';
 import { QueryBiodatumDto } from './dto/query-biodatum.dto';
 import { Roles } from '../auth/decorator/auth.decorator';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Biodatum } from './entities/biodatum.entity';
 
+@ApiTags('biodata')
 @UseGuards(RbacGuard)
 @Controller('biodata')
 export class BiodataController {
@@ -41,6 +44,11 @@ export class BiodataController {
   }
 
   @Version('1')
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+    type: Biodatum,
+  })
   @Post()
   async create(
     @Body() createBiodatumDto: CreateBiodatumDto,

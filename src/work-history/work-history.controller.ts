@@ -14,7 +14,9 @@ import { CreateWorkHistoryDto } from './dto/create-work-history.dto';
 import { UpdateWorkHistoryDto } from './dto/update-work-history.dto';
 import { Response } from '../helper/response';
 import { WorkHistory } from './entities/work-history.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Work History')
 @Controller('work-history')
 export class WorkHistoryController {
   constructor(private readonly workHistoryService: WorkHistoryService) {}
