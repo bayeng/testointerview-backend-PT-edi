@@ -35,8 +35,8 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+# run API docs
+http://localhost:3000/docs
 
 # watch mode
 $ npm run start:dev
